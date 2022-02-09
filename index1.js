@@ -1,6 +1,7 @@
 require('dotenv/config')
 const express = require('express')
 const notes = require('./notes')
+const countries = require('./all-countries')
 const cors = require('cors')
 
 const app = express()
@@ -14,6 +15,10 @@ app.get('/', (request, response) => {
 
 app.get('/api/notes', (request, response) => {
   response.json(notes)
+})
+
+app.get('/api/countries', (request, response) => {
+  response.json(countries)
 })
 
 app.post('/api/notes', async (request, response ) => {
