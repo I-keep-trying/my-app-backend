@@ -6,6 +6,7 @@ const cors = require('cors')
 const app = express()
 
 app.use(express.json())
+app.use(express.static('build'))
 
 app.get('/', (request, response) => {
   response.send('<h1>Hello World!</h1>')

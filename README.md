@@ -9,3 +9,11 @@ For the 1,000th time, I am attempting to log the exact steps required for Heroku
 
 If step 6 fails, your `master` branch might be called `main` or something else.
 
+Note: None of this works with `import`, only basic node app `require` statements will work.
+
+Once the app is successfully running on Heroku, the front end proxy can be changed to the new Heroku url.
+
+Copy front end `build` directory to back end root 
+
+
+
