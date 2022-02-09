@@ -1,4 +1,7 @@
-import 'dotenv/config'
+/* import statements don't seem to work with heroku */
+
+/*
+ import 'dotenv/config'
 import express from 'express'
 import notes from './notes'
 const app = express()
@@ -29,4 +32,4 @@ const maxId = notes.length > 0
 
 const PORT = process.env.PORT || 3001
 app.listen(PORT)
-console.log(`Server running on port ${PORT}`)
+console.log(`Server running on port ${PORT}`) */
