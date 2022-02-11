@@ -1,2 +1,5 @@
 node_modules
 .env
+all-countries-subset.json
+countries3.1.json
+notes.json

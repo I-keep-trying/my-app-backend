@@ -2,7 +2,8 @@ GET http://localhost:3001/api/notes
 ###
 GET http://localhost:3001/api/countries/
 ###
-GET http://localhost:3001/api/countries/Maldives
+GET http://localhost:3001/api/countries/name/Peru
+
 ###
 GET http://localhost:3001/api/notes/620152c8a8b5eb1edc717310
 
