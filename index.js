@@ -2,15 +2,13 @@ require('dotenv/config')
 const express = require('express')
 const axios = require('axios')
 const mongoose = require('mongoose')
-//const Note = require('./models/note')
-//const countries = require('./all-countries')
+const middleware = require('./utils/middleware')
 const cors = require('cors')
-
 const app = express()
 app.use(express.json())
 app.use(express.static('build'))
 
-const countriesUri = process.env.MONGODB_URI_COUNTRIES
+app.use(middleware.requestLogger)
 
 // --------------- Countries from 3rd party api -------------------
 app.get('/api/countries', async (req, res) => {
@@ -33,87 +31,33 @@ app.get('/api/countries/name/:name', async (req, res) => {
   }
 })
 
-// --------------- Countries from mongodb atlas--------------------
-/* mongoose.connect(process.env.MONGODB_URI_COUNTRIES)
-const countrySchema = new mongoose.Schema({ name: String })
-const Country = mongoose.model('Country', countrySchema)
-
-// get all countries
-app.get('/api/countries', (request, response) => {
-  Country.find({}).then((country) => {
-    response.json(country)
-  })
-})
-
-// get one country by name(?)
-app.get('/api/countries/:name', (request, response, next) => {
-  console.log('request.params.name', request.params.name)
-  Country.find({ name: request.params.name })
-    .then((country) => {
-      if (country) {
-        response.json(country)
-      } else {
-        console.log('404 error:', error)
-        response.status(404).send({ error: 'record not found' }).end()
-      }
-    })
-    .catch((error) => next(error))
-}) */
-/* 
-// ------------------- Countries from local json file ------------------
-app.get('/api/countries', (request, response) => {
-  response.json(countries)
-})
-
-// one country from local file 
-app.get('/api/countries/:name', (request, response) => {
-  response.json(
-    countries.filter((country) => country.name === request.params.name)
-  )
-})
- */
-
-app.get('/', (request, response) => {
-  response.send('<h1>Hello World!</h1>')
-})
-/* 
-app.get('/api/notes', (request, response) => {
-  Note.find({}).then((notes) => {
-    response.json(notes)
-  })
-})
-
-app.get('/api/notes/:id', (request, response, next) => {
-  Note.findById(request.params.id)
-    .then((note) => {
-      if (note) {
-        response.json(note)
-      } else {
-        console.log('404 error:', error)
-        response.status(404).send({ error: 'record not found' }).end()
-      }
-    })
-    .catch((error) => next(error))
-})
-
-app.post('/api/notes', (request, response) => {
-  const body = request.body
-
-  if (body.content === undefined) {
-    return response.status(400).json({ error: 'content missing' })
+app.get('/api/weather/lat/:lat/lng/:lng/unit/:unit', async (req, res) => {
+  const lat = req.params.lat
+  const lng = req.params.lng
+  const unit = req.params.unit
+  try {
+    const response = await axios.get(
+      `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&exclude=minutely,hourly&appid=${process.env.REACT_APP_OPENWEATHER_KEY}&units=${unit}`
+    )
+    res.json(response.data)
+  } catch (err) {
+    console.log('axios request failed', err)
   }
-
-  const note = new Note({
-    content: body.content,
-    important: body.important || false,
-    date: new Date(),
-  })
-
-  note.save().then((savedNote) => {
-    response.json(savedNote)
-  })
 })
- */
+
+app.get('/api/time/lat/:lat/lng/:lng', async (req, res) => {
+  const lat = req.params.lat
+  const lng = req.params.lng
+  try {
+    const response = await axios.get(
+      `http://api.timezonedb.com/v2.1/get-time-zone?key=${process.env.REACT_APP_TIMEZONE}&format=json&by=position&lat=${lat}&lng=${lng}`
+    )
+    res.json(response.data)
+  } catch (err) {
+    console.log('axios request failed', err)
+  }
+})
+
 const unknownEndpoint = (request, response) => {
   console.log('Unknown endpoint error')
   response.status(404).send({ error: 'unknown endpoint' })
@@ -134,10 +78,8 @@ const errorHandler = (error, request, response, next) => {
 
 app.use(errorHandler)
 
-/* app.get('/api/countries', (request, response) => {
-  response.json(countries)
-}) */
-
 const PORT = process.env.PORT || 3001
 app.listen(PORT)
 console.log(`Server running on port ${PORT}`)
+
+// front end: https://github.com/I-keep-trying/countries3.1

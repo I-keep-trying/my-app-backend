@@ -1,5 +1,7 @@
 GET http://localhost:3001/api/notes
 ###
+GET http://localhost:3001/api/weather/lat/59.92/lng/10.75/unit/metric
+###
 GET http://localhost:3001/api/countries/
 ###
 GET http://localhost:3001/api/countries/name/Peru
@@ -12,7 +14,7 @@ POST http://localhost:3001/api/notes
 Content-Type: application/json
 
  {
-      "content": "ooooooooooooooooooooooooo",
+      "content": "shocked and oversurprised and panick",
       "important": false
     }
 

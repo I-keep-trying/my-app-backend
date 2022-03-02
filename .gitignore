@@ -3,3 +3,6 @@ node_modules
 all-countries-subset.json
 countries3.1.json
 notes.json
+index1.js
+.rest
+app.js
