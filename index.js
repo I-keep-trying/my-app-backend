@@ -9,11 +9,12 @@ app.use(express.json())
 app.use(express.static('build'))
 
 app.use(middleware.requestLogger)
-
+console.log('process.node.env', process.env.NODE_ENV)
 // --------------- Countries from 3rd party api -------------------
 app.get('/api/countries', async (req, res) => {
   try {
     const response = await axios.get('https://restcountries.com/v3.1/all')
+
     res.json(response.data)
   } catch (err) {
     console.log('axios request failed', err)
