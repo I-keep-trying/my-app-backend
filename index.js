@@ -4,11 +4,15 @@ const axios = require('axios')
 const mongoose = require('mongoose')
 const middleware = require('./utils/middleware')
 const cors = require('cors')
+const compression = require('compression')
 const app = express()
+
+app.use(compression())
 app.use(express.json())
 app.use(express.static('build'))
 
 app.use(middleware.requestLogger)
+
 console.log('process.node.env', process.env.NODE_ENV)
 // --------------- Countries from 3rd party api -------------------
 app.get('/api/countries', async (req, res) => {
