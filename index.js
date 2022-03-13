@@ -8,7 +8,35 @@ const compression = require('compression')
 const helmet = require('helmet')
 const app = express()
 
-app.use(helmet())
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      'script-src': ['unsafe-inline', 'unsafe-eval', 'http:', 'https:'],
+      'base-uri': ['none'],
+      'require-trusted-types-for': ['script'],
+    },
+  })
+)
+/* 
+Content-Security-Policy: 
+default-src 'self';
+base-uri 'self';
+block-all-mixed-content;
+font-src 'self' https: data:;
+form-action 'self';
+frame-ancestors 'self';
+img-src 'self' data:;
+object-src 'none';
+script-src 'self';
+script-src-attr 'none';
+style-src 'self' https: 'unsafe-inline';
+upgrade-insecure-requests
+*/
+/* 
+contentSecurityPolicy: fix script-src 'self'
+example: script-src 'unsafe-inline' 'unsafe-eval' http: https:;
+add require-trusted-types-for 'script'
+*/
 app.use((req, res, next) => {
   res.setHeader('Permissions-Policy', 'geolocation=(), interest-cohort=()')
   next()
