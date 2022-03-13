@@ -9,6 +9,10 @@ const helmet = require('helmet')
 const app = express()
 
 app.use(helmet())
+app.use((req, res, next) => {
+  res.setHeader('Permissions-Policy', 'geolocation=(), interest-cohort=()')
+  next()
+})
 app.use(compression())
 app.use(express.json())
 app.use(express.static('build'))
