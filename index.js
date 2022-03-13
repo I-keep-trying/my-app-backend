@@ -11,9 +11,9 @@ const app = express()
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      'script-src': ['unsafe-inline', 'unsafe-eval', 'http:', 'https:'],
+      //  'script-src': ['unsafe-inline', 'unsafe-eval', 'http:', 'https:'],
       // 'base-uri': ['none'],
-      //  'require-trusted-types-for': ['script'],
+      'require-trusted-types-for': ['script'],
     },
   })
 )
