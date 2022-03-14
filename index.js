@@ -5,10 +5,10 @@ const mongoose = require('mongoose')
 const middleware = require('./utils/middleware')
 const cors = require('cors')
 const compression = require('compression')
-//const helmet = require('helmet')
+const helmet = require('helmet')
 const app = express()
 
-//app.use(helmet())
+app.use(helmet())
 
 /* app.use((req, res, next) => {
   res.setHeader('Permissions-Policy', 'geolocation=(), interest-cohort=()')
