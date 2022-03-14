@@ -1,10 +1,10 @@
-GET http://localhost:3001/api/notes
+GET http://localhost:3001/
 ###
 GET http://localhost:3001/api/weather/lat/59.92/lng/10.75/unit/metric
 ###
 GET http://localhost:3001/api/countries/
 ###
-GET http://localhost:3001/api/countries/name/Peru
+GET http://localhost:3001/api/countries/name/colombia
 
 ###
 GET http://localhost:3001/api/notes/620152c8a8b5eb1edc717310
