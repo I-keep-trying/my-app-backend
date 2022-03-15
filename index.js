@@ -5,23 +5,20 @@ const mongoose = require('mongoose')
 const middleware = require('./utils/middleware')
 const cors = require('cors')
 const compression = require('compression')
-const helmet = require('helmet')
+//const helmet = require('helmet')
 const app = express()
 
-app.use(
+/* app.use(
   helmet.contentSecurityPolicy({
-    // useDefaults: false,
     directives: {
       defaultSrc: ["'self'"],
       scriptSrc: ["'self'", 'sheltered-scrubland-08732.herokuapp.com'],
       styleSrc: ["'self'"],
       imgSrc: ["'self'", 'flagcdn.com', 'upload.wikimedia.org'],
       fontSrc: ["'self'", 'fonts.googleapis.com'],
-      //  objectSrc: ["'none'"],
-      //upgradeInsecureRequests: [],
     },
   })
-)
+) */
 
 /* app.use((req, res, next) => {
   res.setHeader('Permissions-Policy', 'geolocation=(), interest-cohort=()')
