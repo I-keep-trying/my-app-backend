@@ -9,10 +9,17 @@ const helmet = require('helmet')
 const app = express()
 
 app.use(
-  helmet({
-    contentSecurityPolicy: false,
+  helmet.contentSecurityPolicy({
+    useDefaults: false,
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", 'flagcdn.com', 'upload.wikimedia.org'],
+      objectSrc: ["'none'"],
+      upgradeInsecureRequests: [],
+    },
   })
 )
+
 /* app.use((req, res, next) => {
   res.setHeader('Permissions-Policy', 'geolocation=(), interest-cohort=()')
   next()
