@@ -8,8 +8,11 @@ const compression = require('compression')
 const helmet = require('helmet')
 const app = express()
 
-app.use(helmet())
-
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+  })
+)
 /* app.use((req, res, next) => {
   res.setHeader('Permissions-Policy', 'geolocation=(), interest-cohort=()')
   next()
