@@ -29,7 +29,7 @@ app.use((req, res, next) => {
   //res.setHeader('Content-Security-Policy', `require-trusted-types-for 'self'`) // wow actually worked
   res.setHeader(
     'Content-Security-Policy',
-    `default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' flagcdn.com upload.wikimedia.org;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' fonts.googleapis.com;require-trusted-types-for 'self';upgrade-insecure-requests`
+    `default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' flagcdn.com upload.wikimedia.org;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' fonts.googleapis.com;require-trusted-types-for 'script';upgrade-insecure-requests`
   )
   next()
 })
