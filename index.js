@@ -11,7 +11,8 @@ const app = express()
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      'img-src': ["'self'", "'data'", 'flagcdn.com', 'upload.wikimedia.org'],
+      'img-src': ["'self'", 'flagcdn.com', 'upload.wikimedia.org'],
+      'require-trusted-types-for': ["'script'"],
     },
   })
 )
