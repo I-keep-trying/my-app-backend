@@ -20,10 +20,11 @@ const app = express()
   })
 ) */
 
-/* app.use((req, res, next) => {
+app.use((req, res, next) => {
   res.setHeader('Permissions-Policy', 'geolocation=(), interest-cohort=()')
   next()
-}) */
+})
+
 app.use(compression())
 app.use(express.json())
 app.use(express.static('build'))
