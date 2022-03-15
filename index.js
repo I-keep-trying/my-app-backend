@@ -8,7 +8,13 @@ const compression = require('compression')
 const helmet = require('helmet')
 const app = express()
 
-app.use(helmet.contentSecurityPolicy())
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      'img-src': ["'self'", "'data'", 'flagcdn.com', 'upload.wikimedia.org'],
+    },
+  })
+)
 
 app.use((req, res, next) => {
   res.setHeader('Permissions-Policy', 'geolocation=(), interest-cohort=()')
