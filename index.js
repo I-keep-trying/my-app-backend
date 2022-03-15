@@ -12,7 +12,7 @@ app.use(
   helmet.contentSecurityPolicy({
     directives: {
       'img-src': ["'self'", 'flagcdn.com', 'upload.wikimedia.org'],
-      'require-trusted-types-for': ["'script'"],
+      'require-trusted-types-for': ['script'],
     },
   })
 )
