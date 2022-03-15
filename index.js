@@ -10,12 +10,15 @@ const app = express()
 
 app.use(
   helmet.contentSecurityPolicy({
-    useDefaults: false,
+    // useDefaults: false,
     directives: {
       defaultSrc: ["'self'"],
-      scriptSrc: ["'self'", 'flagcdn.com', 'upload.wikimedia.org'],
-      objectSrc: ["'none'"],
-      upgradeInsecureRequests: [],
+      scriptSrc: ["'self'", 'sheltered-scrubland-08732.herokuapp.com'],
+      styleSrc: ["'self'"],
+      imgSrc: ["'self'", 'flagcdn.com', 'upload.wikimedia.org'],
+      fontSrc: ["'self'", 'fonts.googleapis.com'],
+      //  objectSrc: ["'none'"],
+      //upgradeInsecureRequests: [],
     },
   })
 )
