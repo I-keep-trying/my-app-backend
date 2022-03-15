@@ -12,7 +12,7 @@ app.use(
   helmet.contentSecurityPolicy({
     directives: {
       'img-src': ["'self'", 'flagcdn.com', 'upload.wikimedia.org'],
-      'style-src': ["'self'"],
+      'style-src': ["'self'", 'fonts.googleapis.com'],
     },
   })
 )
