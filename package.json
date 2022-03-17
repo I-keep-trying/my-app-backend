@@ -6,7 +6,6 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production node index.js",
     "start-dev": "nodemon index.js",
-    "build": "git add . && git commit -m server-config && git push origin master && git push heroku master",
     "dev": "nodemon --exec babel-node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
