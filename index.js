@@ -13,6 +13,7 @@ app.use(
     directives: {
       'img-src': ["'self'", 'flagcdn.com', 'upload.wikimedia.org'],
       'style-src': ["'self'", 'fonts.googleapis.com'],
+      'require-trusted-types-for': [`'self'`],
     },
   })
 )
@@ -26,16 +27,17 @@ app.use((req, res, next) => {
   res.setHeader('X-Frame-Options', 'SAMEORIGIN')
   res.setHeader('X-Content-Type-Options', 'nosniff')
   res.setHeader('Referrer-Policy', 'strict-origin')
-  //res.setHeader('Content-Security-Policy', `require-trusted-types-for 'self'`) // wow actually worked
-  //res.setHeader('Content-Security-Policy', `default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' flagcdn.com upload.wikimedia.org;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' fonts.googleapis.com;require-trusted-types-for 'script';upgrade-insecure-requests`  )
+  res.setHeader('Cache-Control', 'max-age=31536000')
+
+  // res.setHeader('Content-Security-Policy', `require-trusted-types-for 'self'`) // wow actually worked
   next()
 })
 
 app.use(compression())
 app.use(express.json())
-app.use(express.static('build'))
-
 app.use(middleware.requestLogger)
+
+app.use(express.static('build'))
 
 // --------------- Countries from 3rd party api -------------------
 app.get('/api/countries', async (req, res) => {
