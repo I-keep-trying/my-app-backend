@@ -14,7 +14,7 @@ app.use(
     directives: {
       'img-src': ["'self'", 'flagcdn.com', 'upload.wikimedia.org'],
       'style-src': ["'self'", 'fonts.googleapis.com'],
-      'require-trusted-types-for': [`'script'`],
+      //  'require-trusted-types-for': [`'script'`],
     },
   })
 )
