@@ -6,6 +6,7 @@ const middleware = require('./utils/middleware')
 const cors = require('cors')
 const compression = require('compression')
 const helmet = require('helmet')
+const path = require('path')
 const app = express()
 
 app.use(
@@ -28,8 +29,6 @@ app.use((req, res, next) => {
   res.setHeader('X-Content-Type-Options', 'nosniff')
   res.setHeader('Referrer-Policy', 'strict-origin')
   res.setHeader('Cache-Control', 'max-age=31536000')
-
-  // res.setHeader('Content-Security-Policy', `require-trusted-types-for 'self'`) // wow actually worked
   next()
 })
 
