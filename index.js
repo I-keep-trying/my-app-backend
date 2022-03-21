@@ -14,8 +14,7 @@ app.use(
     directives: {
       'img-src': [
         "'self'",
-       /*  "'data'", */
-       'data:'
+        'data:',
         'flagcdn.com',
         'upload.wikimedia.org',
         'openweathermap.org',
@@ -26,7 +25,7 @@ app.use(
         'sheltered-scrubland-08732.herokuapp.com',
         'https://*.here.com:*',
         'https://*.hereapi.com:*',
-        "'blob'"
+        "'blob'",
       ],
       /*    'style-src': [
         "'self'",
