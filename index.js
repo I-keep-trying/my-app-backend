@@ -14,6 +14,8 @@ app.use(
     directives: {
       'img-src': [
         "'self'",
+        "'data'",
+        'blob:',
         'flagcdn.com',
         'upload.wikimedia.org',
         'openweathermap.org',
