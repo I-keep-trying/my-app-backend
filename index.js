@@ -12,7 +12,12 @@ const app = express()
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      'img-src': ["'self'", 'flagcdn.com', 'upload.wikimedia.org'],
+      'img-src': [
+        "'self'",
+        'flagcdn.com',
+        'upload.wikimedia.org',
+        'openweathermap.org',
+      ],
       'style-src': ["'self'", 'fonts.googleapis.com'],
       //  'require-trusted-types-for': [`'script'`],
     },
