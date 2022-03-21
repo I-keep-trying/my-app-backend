@@ -19,6 +19,11 @@ app.use(
         'openweathermap.org',
         'hereapi.com',
       ],
+      'script-src': [
+        'self',
+        'hereapi.com',
+        'sheltered-scrubland-08732.herokuapp.com',
+      ],
       /*    'style-src': [
         "'self'",
         'fonts.googleapis.com',
