@@ -19,14 +19,14 @@ app.use(
         'openweathermap.org',
         'hereapi.com',
       ],
-      'style-src': [
+      /*    'style-src': [
         "'self'",
         'fonts.googleapis.com',
         'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=',
         'sha256-10e801rrdN2Gq8YctvySwnSlugHJX+Xjgx1mhmij72w=',
         'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=',
         'sha256-e89fobGAetuB/6VgXYgfYEJo7toSqmridYOdrJoE6LU=',
-      ],
+      ], */
       /*  'connect-src': [
         'https://sheltered-scrubland-08732.herokuapp.com/',
         'https://*.here.com:*',
@@ -40,7 +40,7 @@ app.use(
       //  'require-trusted-types-for': [`'script'`], // cannot use. 'script' value requires further specifications which are a mystery to solve some other time.
     },
   })
-)``
+)
 
 app.use((req, res, next) => {
   res.setHeader('Permissions-Policy', 'geolocation=(), interest-cohort=()')
