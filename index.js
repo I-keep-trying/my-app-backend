@@ -38,6 +38,7 @@ app.use(
       ],
       'object-src': ['none'],
       'base-uri': ['none'],
+      'worker-src': ["'self'", 'blob:'],
       /*    'style-src': [
         "'self'",
         'fonts.googleapis.com',
