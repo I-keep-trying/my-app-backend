@@ -28,9 +28,9 @@ app.use(
         'sha256-e89fobGAetuB/6VgXYgfYEJo7toSqmridYOdrJoE6LU=',
       ],
       'connect-src': [
-        'sheltered-scrubland-08732.herokuapp.com',
-        'js.api.here.com',
-        'hereapi.com',
+        'https://sheltered-scrubland-08732.herokuapp.com/',
+        'https://*.here.com:*',
+        'https://*.hereapi.com:*',
       ],
       'script-src': [
         'self',
@@ -40,7 +40,7 @@ app.use(
       //  'require-trusted-types-for': [`'script'`], // cannot use. 'script' value requires further specifications which are a mystery to solve some other time.
     },
   })
-)
+)``
 
 app.use((req, res, next) => {
   res.setHeader('Permissions-Policy', 'geolocation=(), interest-cohort=()')
