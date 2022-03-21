@@ -30,14 +30,12 @@ app.use(
       ],
       'script-src': [
         'sheltered-scrubland-08732.herokuapp.com',
-        'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=',
+        "'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='",
         'sha256-10e801rrdN2Gq8YctvySwnSlugHJX+Xjgx1mhmij72w=',
         'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=',
         'sha256-e89fobGAetuB/6VgXYgfYEJo7toSqmridYOdrJoE6LU=',
         'strict-dynamic',
       ],
-      'object-src': ['none'],
-      'base-uri': ['none'],
       'worker-src': ["'self'", 'blob:'],
       /*    'style-src': [
         "'self'",
