@@ -21,13 +21,19 @@ app.use(
         'hereapi.com',
         'js.api.here.com',
       ],
-      'script-src': ['self', 'sheltered-scrubland-08732.herokuapp.com'],
-      'connect-src': [
+      /*       'script-src': ['self', 'sheltered-scrubland-08732.herokuapp.com'],
+       */ 'connect-src': [
         'sheltered-scrubland-08732.herokuapp.com',
         'https://*.here.com:*',
         'https://*.hereapi.com:*',
         'blob:',
       ],
+      'script-src': [
+        'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=',
+        'strict-dynamic',
+      ],
+      'object-src': ['none'],
+      'base-uri': ['none'],
       /*    'style-src': [
         "'self'",
         'fonts.googleapis.com',
