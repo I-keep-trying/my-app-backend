@@ -25,7 +25,7 @@ app.use(
         'sheltered-scrubland-08732.herokuapp.com',
         'https://*.here.com:*',
         'https://*.hereapi.com:*',
-        "'blob'",
+        'blob:',
       ],
       /*    'style-src': [
         "'self'",
