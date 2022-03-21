@@ -19,7 +19,7 @@ app.use(
         'upload.wikimedia.org',
         'openweathermap.org',
         'hereapi.com',
-        'here.com',
+        'js.api.here.com',
       ],
       'script-src': ['self', 'sheltered-scrubland-08732.herokuapp.com'],
       'connect-src': [
