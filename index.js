@@ -29,6 +29,7 @@ app.use(
         'blob:',
       ],
       'script-src': [
+        'sheltered-scrubland-08732.herokuapp.com',
         'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=',
         'sha256-10e801rrdN2Gq8YctvySwnSlugHJX+Xjgx1mhmij72w=',
         'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=',
