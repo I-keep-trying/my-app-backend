@@ -29,8 +29,8 @@ app.use(
       ],
       'connect-src': [
         'https://sheltered-scrubland-08732.herokuapp.com/',
-        'https://*.here.com:*',
-        'https://*.hereapi.com:*',
+        /*   'https://*.here.com:*',
+        'https://*.hereapi.com:*', */
       ],
       'script-src': [
         'self',
