@@ -22,16 +22,17 @@ app.use(
       'style-src': [
         "'self'",
         'fonts.googleapis.com',
-        `'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='`,
-        `'sha256-10e801rrdN2Gq8YctvySwnSlugHJX+Xjgx1mhmij72w='`,
-        `'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='`,
-        `'sha256-e89fobGAetuB/6VgXYgfYEJo7toSqmridYOdrJoE6LU='`,
+        'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=',
+        'sha256-10e801rrdN2Gq8YctvySwnSlugHJX+Xjgx1mhmij72w=',
+        'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=',
+        'sha256-e89fobGAetuB/6VgXYgfYEJo7toSqmridYOdrJoE6LU=',
       ],
       'connect-src': [
         'sheltered-scrubland-08732.herokuapp.com',
         'js.api.here.com',
         'hereapi.com',
       ],
+      'script-src': ['self', 'hereapi.com'],
       //  'require-trusted-types-for': [`'script'`], // cannot use. 'script' value requires further specifications which are a mystery to solve some other time.
     },
   })
