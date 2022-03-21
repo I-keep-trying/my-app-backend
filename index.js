@@ -32,7 +32,11 @@ app.use(
         'js.api.here.com',
         'hereapi.com',
       ],
-      'script-src': ['self', 'hereapi.com'],
+      'script-src': [
+        'self',
+        'hereapi.com',
+        'sheltered-scrubland-08732.herokuapp.com',
+      ],
       //  'require-trusted-types-for': [`'script'`], // cannot use. 'script' value requires further specifications which are a mystery to solve some other time.
     },
   })
