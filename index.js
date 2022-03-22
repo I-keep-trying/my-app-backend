@@ -36,7 +36,7 @@ app.use(
         "'strict-dynamic'",
         'http:',
         'https:',
-        'unsafe-inline',
+        "'unsafe-inline'",
       ],
       'object-src': ["'none'"],
       'base-uri': ["'none'"],
