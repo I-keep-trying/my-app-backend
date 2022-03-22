@@ -21,8 +21,7 @@ app.use(
         'hereapi.com',
         'js.api.here.com',
       ],
-      /*       'script-src': ['self', 'sheltered-scrubland-08732.herokuapp.com'],
-       */ 'connect-src': [
+      'connect-src': [
         'sheltered-scrubland-08732.herokuapp.com',
         'https://*.here.com:*',
         'https://*.hereapi.com:*',
@@ -30,30 +29,14 @@ app.use(
       ],
       'script-src': [
         "'self'",
+        'strict-dynamic',
+        'https://sheltered-scrubland-08732.herokuapp.com/static/js/17.28d8c005.chunk.js',
+        'https://sheltered-scrubland-08732.herokuapp.com/static/js/21.3b2ba42d.chunk.js',
         "'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='",
         "'sha256-10e801rrdN2Gq8YctvySwnSlugHJX+Xjgx1mhmij72w='",
         "'sha256-e89fobGAetuB/6VgXYgfYEJo7toSqmridYOdrJoE6LU='",
-        'strict-dynamic',
       ],
       'worker-src': ["'self'", 'blob:'],
-      /*    'style-src': [
-        "'self'",
-        'fonts.googleapis.com',
-        'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=',
-        'sha256-10e801rrdN2Gq8YctvySwnSlugHJX+Xjgx1mhmij72w=',
-        'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=',
-        'sha256-e89fobGAetuB/6VgXYgfYEJo7toSqmridYOdrJoE6LU=',
-      ], */
-      /*  'connect-src': [
-        'https://sheltered-scrubland-08732.herokuapp.com/',
-        'https://*.here.com:*',
-        'https://*.hereapi.com:*',
-      ],
-      'script-src': [
-        'self',
-        'hereapi.com',
-        'sheltered-scrubland-08732.herokuapp.com',
-      ], */
       //  'require-trusted-types-for': [`'script'`], // cannot use. 'script' value requires further specifications which are a mystery to solve some other time.
     },
   })
@@ -100,6 +83,8 @@ app.get('/api/countries/name/:name', async (req, res) => {
   }
 })
 
+// --------------- Country Weather from 3rd party api -------------------
+
 app.get('/api/weather/lat/:lat/lng/:lng/unit/:unit', async (req, res) => {
   const lat = req.params.lat
   const lng = req.params.lng
@@ -113,6 +98,8 @@ app.get('/api/weather/lat/:lat/lng/:lng/unit/:unit', async (req, res) => {
     console.log('axios request failed', err)
   }
 })
+
+// --------------- Country date/time from 3rd party api -------------------
 
 app.get('/api/time/lat/:lat/lng/:lng', async (req, res) => {
   const lat = req.params.lat
