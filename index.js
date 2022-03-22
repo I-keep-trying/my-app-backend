@@ -28,9 +28,10 @@ app.use(
         'blob:',
       ],
       'worker-src': ["'self'", 'blob:'], */
-
+      'default-src': ["'none'"],
       'script-src': [
-        "'sha256-z3XhI/8xFoDrGlxvbPxJ1yuAuu4OutSCCbQxwVhexaQ='",
+        'https://sheltered-scrubland-08732.herokuapp.com',
+        /*      "'sha256-z3XhI/8xFoDrGlxvbPxJ1yuAuu4OutSCCbQxwVhexaQ='",
         "'sha256-fcWab9rerwGZI9O/reUjDM9OF42ISG0XwzVbODqwjJw='",
         "'sha256-jgxyqLN0ronufYylGiVVJ0rMXa+9Wf+a4F6alb7drPo='",
         "'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='", // <script src="/static/js/runtime-main.11477cd6.js"></script>
@@ -39,7 +40,7 @@ app.use(
         "'strict-dynamic'",
         'http:',
         'https:',
-        "'unsafe-inline'",
+        "'unsafe-inline'", */
       ],
       'object-src': ["'none'"],
       'base-uri': ["'none'"],
