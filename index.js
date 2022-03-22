@@ -31,9 +31,9 @@ app.use(
       'default-src': ["'none'"],
       'script-src': [
         'https://sheltered-scrubland-08732.herokuapp.com',
-        'sha256-vqol01UCQbQtIbFsadt22MWtP/EzXBhlXJVTdE3Z0Nk=',
-        'sha256-33dcmxHc726AphEOtauUa39NPzHtsEPzEAX8PKd8NU0=',
-        'sha256-vqol01UCQbQtIbFsadt22MWtP/EzXBhlXJVTdE3Z0Nk=',
+        "'sha256-vqol01UCQbQtIbFsadt22MWtP/EzXBhlXJVTdE3Z0Nk='",
+        "'sha256-33dcmxHc726AphEOtauUa39NPzHtsEPzEAX8PKd8NU0='",
+        "'sha256-vqol01UCQbQtIbFsadt22MWtP/EzXBhlXJVTdE3Z0Nk='",
         /*      "'sha256-z3XhI/8xFoDrGlxvbPxJ1yuAuu4OutSCCbQxwVhexaQ='",
         "'sha256-fcWab9rerwGZI9O/reUjDM9OF42ISG0XwzVbODqwjJw='",
         "'sha256-jgxyqLN0ronufYylGiVVJ0rMXa+9Wf+a4F6alb7drPo='",
