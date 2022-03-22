@@ -62,6 +62,7 @@ app.use(
         'https://*.hereapi.com:*',
         'blob:',
       ],
+      'worker-src': ["'self'", 'blob:'],
       /*   'connect-src': ['https://sheltered-scrubland-08732.herokuapp.com'], */
       'manifest-src': ['https://sheltered-scrubland-08732.herokuapp.com'],
       //  'require-trusted-types-for': [`'script'`], // cannot use. 'script' value requires further specifications which are a mystery to solve some other time.
