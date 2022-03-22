@@ -29,7 +29,7 @@ app.use(
       ],
       'script-src': [
         "'self'",
-        'strict-dynamic',
+        "'strict-dynamic'",
         'mapsjs.bundle.js:840',
         "'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='",
         "'sha256-10e801rrdN2Gq8YctvySwnSlugHJX+Xjgx1mhmij72w='",
