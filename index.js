@@ -12,7 +12,7 @@ const app = express()
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      'img-src': [
+      /*    'img-src': [
         "'self'",
         'data:',
         'flagcdn.com',
@@ -27,14 +27,16 @@ app.use(
         'https://*.hereapi.com:*',
         'blob:',
       ],
+      'worker-src': ["'self'", 'blob:'], */
+
       'script-src': [
-        /*"'self'",*/
-        "'strict-dynamic'",
         "'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='",
         "'sha256-10e801rrdN2Gq8YctvySwnSlugHJX+Xjgx1mhmij72w='",
         "'sha256-e89fobGAetuB/6VgXYgfYEJo7toSqmridYOdrJoE6LU='",
+        "'strict-dynamic'",
       ],
-      'worker-src': ["'self'", 'blob:'],
+      'object-src': ["'none'"],
+      'base-uri': ["'none'"],
       //  'require-trusted-types-for': [`'script'`], // cannot use. 'script' value requires further specifications which are a mystery to solve some other time.
     },
   })
