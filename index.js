@@ -28,9 +28,8 @@ app.use(
         'blob:',
       ],
       'script-src': [
-        "'self'",
+        /*"'self'",*/
         "'strict-dynamic'",
-        'mapsjs.bundle.js:840',
         "'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='",
         "'sha256-10e801rrdN2Gq8YctvySwnSlugHJX+Xjgx1mhmij72w='",
         "'sha256-e89fobGAetuB/6VgXYgfYEJo7toSqmridYOdrJoE6LU='",
