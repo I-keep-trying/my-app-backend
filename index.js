@@ -32,6 +32,8 @@ app.use(
         'strict-dynamic',
         'https://sheltered-scrubland-08732.herokuapp.com/static/js/17.28d8c005.chunk.js',
         'https://sheltered-scrubland-08732.herokuapp.com/static/js/21.3b2ba42d.chunk.js',
+        'https://sheltered-scrubland-08732.herokuapp.com/static/js/3.b35df2ea.chunk.js',
+        'https://sheltered-scrubland-08732.herokuapp.com/static/js/19.4f5f7b82.chunk.js',
         "'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='",
         "'sha256-10e801rrdN2Gq8YctvySwnSlugHJX+Xjgx1mhmij72w='",
         "'sha256-e89fobGAetuB/6VgXYgfYEJo7toSqmridYOdrJoE6LU='",
