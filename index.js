@@ -44,6 +44,8 @@ app.use(
       ],
       'object-src': ["'none'"],
       'base-uri': ["'none'"],
+      'connect-src': ["'https://sheltered-scrubland-08732.herokuapp.com'"],
+      'manifest-src': ["'https://sheltered-scrubland-08732.herokuapp.com'"],
       //  'require-trusted-types-for': [`'script'`], // cannot use. 'script' value requires further specifications which are a mystery to solve some other time.
     },
   })
