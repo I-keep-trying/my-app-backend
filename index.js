@@ -27,7 +27,7 @@ app.use(
         "'sha256-gpDxdDuBGxxl88r6aymWROliaETfsyODwU6dpFZyIUU='",
         "'sha256-33dcmxHc726AphEOtauUa39NPzHtsEPzEAX8PKd8NU0='",
         "'sha256-vqol01UCQbQtIbFsadt22MWtP/EzXBhlXJVTdE3Z0Nk='",
-        'strict-dynamic',
+        "'strict-dynamic'",
       ],
       'object-src': ["'none'"],
       'base-uri': ["'none'"],
