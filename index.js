@@ -12,22 +12,6 @@ const app = express()
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      /*    'img-src': [
-        "'self'",
-        'data:',
-        'flagcdn.com',
-        'upload.wikimedia.org',
-        'openweathermap.org',
-        'hereapi.com',
-        'js.api.here.com',
-      ],
-      'connect-src': [
-        'sheltered-scrubland-08732.herokuapp.com',
-        'https://*.here.com:*',
-        'https://*.hereapi.com:*',
-        'blob:',
-      ],
-      'worker-src': ["'self'", 'blob:'], */
       'img-src': [
         "'self'",
         'data:',
@@ -43,16 +27,7 @@ app.use(
         "'sha256-gpDxdDuBGxxl88r6aymWROliaETfsyODwU6dpFZyIUU='",
         "'sha256-33dcmxHc726AphEOtauUa39NPzHtsEPzEAX8PKd8NU0='",
         "'sha256-vqol01UCQbQtIbFsadt22MWtP/EzXBhlXJVTdE3Z0Nk='",
-        /*      "'sha256-z3XhI/8xFoDrGlxvbPxJ1yuAuu4OutSCCbQxwVhexaQ='",
-        "'sha256-fcWab9rerwGZI9O/reUjDM9OF42ISG0XwzVbODqwjJw='",
-        "'sha256-jgxyqLN0ronufYylGiVVJ0rMXa+9Wf+a4F6alb7drPo='",
-        "'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='", // <script src="/static/js/runtime-main.11477cd6.js"></script>
-        "'sha256-10e801rrdN2Gq8YctvySwnSlugHJX+Xjgx1mhmij72w='",
-        "'sha256-e89fobGAetuB/6VgXYgfYEJo7toSqmridYOdrJoE6LU='",
-        "'strict-dynamic'",
-        'http:',
-        'https:',
-        "'unsafe-inline'", */
+        'strict-dynamic',
       ],
       'object-src': ["'none'"],
       'base-uri': ["'none'"],
@@ -63,7 +38,6 @@ app.use(
         'blob:',
       ],
       'worker-src': ["'self'", 'blob:'],
-      /*   'connect-src': ['https://sheltered-scrubland-08732.herokuapp.com'], */
       'manifest-src': ['https://sheltered-scrubland-08732.herokuapp.com'],
       //  'require-trusted-types-for': [`'script'`], // cannot use. 'script' value requires further specifications which are a mystery to solve some other time.
     },
