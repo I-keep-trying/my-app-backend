@@ -27,6 +27,7 @@ app.use(
         "'sha256-gpDxdDuBGxxl88r6aymWROliaETfsyODwU6dpFZyIUU='",
         "'sha256-33dcmxHc726AphEOtauUa39NPzHtsEPzEAX8PKd8NU0='",
         "'sha256-vqol01UCQbQtIbFsadt22MWtP/EzXBhlXJVTdE3Z0Nk='",
+        "'sha256-vnJfeIr7hNIEwFqAV/GfKdJDn1SeGTUHl87WXU7cOxA='",
         "'strict-dynamic'",
       ],
       'object-src': ["'none'"],
