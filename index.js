@@ -28,6 +28,15 @@ app.use(
         'blob:',
       ],
       'worker-src': ["'self'", 'blob:'], */
+      'img-src': [
+        "'self'",
+        'data:',
+        'flagcdn.com',
+        'upload.wikimedia.org',
+        'openweathermap.org',
+        'hereapi.com',
+        'js.api.here.com',
+      ],
       'default-src': ["'none'"],
       'script-src': [
         'https://sheltered-scrubland-08732.herokuapp.com',
