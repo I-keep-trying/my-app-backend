@@ -9,7 +9,7 @@ const helmet = require('helmet')
 const path = require('path')
 const app = express()
 
-app.use(
+/* app.use(
   helmet.contentSecurityPolicy({
     directives: {
       'img-src': [
@@ -42,7 +42,7 @@ app.use(
       //  'require-trusted-types-for': [`'script'`], // cannot use. 'script' value requires further specifications which are a mystery to solve some other time.
     },
   })
-)
+) */
 
 app.use((req, res, next) => {
   res.setHeader('Permissions-Policy', 'geolocation=(), interest-cohort=()')
