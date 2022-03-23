@@ -21,7 +21,7 @@ app.use(
         'hereapi.com',
         'js.api.here.com',
       ],
-      'default-src': ["'none'"],
+      'default-src': ["'self'"],
       'script-src': [
         "'sha256-gpDxdDuBGxxl88r6aymWROliaETfsyODwU6dpFZyIUU='",
         "'sha256-33dcmxHc726AphEOtauUa39NPzHtsEPzEAX8PKd8NU0='",
