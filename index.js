@@ -9,7 +9,13 @@ const helmet = require('helmet')
 const path = require('path')
 const app = express()
 
-app.use(helmet())
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      'img-src': ['flagcdn.com', 'upload.wikimedia.org'],
+    },
+  })
+)
 /* app.use(
   helmet.contentSecurityPolicy({
     directives: {
