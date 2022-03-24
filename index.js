@@ -16,7 +16,7 @@ app.use(
         "'self'",
         'flagcdn.com',
         'upload.wikimedia.org',
-        '*.tile.openstreetmap.org/*',
+        'https://*.tile.openstreetmap.org/*',
       ],
     },
   })
