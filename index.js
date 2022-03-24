@@ -17,6 +17,8 @@ app.use(
         'flagcdn.com',
         'upload.wikimedia.org',
         'https://*.openstreetmap.org:*',
+        'https://*openweathermap.org:*',
+        'mainfacts.com',
       ],
     },
   })
