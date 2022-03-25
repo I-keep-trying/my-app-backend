@@ -9,6 +9,39 @@ const helmet = require('helmet')
 const path = require('path')
 const app = express()
 
+const CryptoJS = require('crypto-js')
+const fs = require('fs')
+
+const findFile = fs
+  .readdirSync('./build/static/js')
+  .filter((f) => f.match(/runtime-main\..*\.js$/))
+console.log('findFile', findFile)
+
+const findFile2 = fs
+  .readdirSync('./build/static/js')
+  .filter((f) => f.match(/main\..*\.chunk\.js$/))
+console.log('findFile', findFile2)
+
+const hash1 = fs.readFileSync(
+  // './build/static/js/runtime-main.5fec9555.js',
+  `./build/static/js/${findFile}`,
+  (err, data) => {
+    if (err) throw err
+    data
+    //  const hash = CryptoJS.SHA256(jsFile)
+    //  hash.toString(CryptoJS.enc.Base64)
+
+    //console.log('SHA', CryptoJS.SHA256(jsFile))
+  }
+)
+
+const hashString = hash1.toString('utf8')
+//console.log('hashString', hashString)
+
+const hash2 = 'sha256-'.concat(
+  CryptoJS.SHA256(hashString).toString(CryptoJS.enc.Base64)
+)
+console.log('hash2', hash2)
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
@@ -30,40 +63,10 @@ app.use(
     },
   })
 )
-/* app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      'img-src': [
-        "'self'",
-        'data:',
-        'flagcdn.com',
-        'upload.wikimedia.org',
-        'openweathermap.org',
-        'hereapi.com',
-        'js.api.here.com',
-      ],
-      'default-src': ["'none'"],
-      'script-src': [
-        "'sha256-gpDxdDuBGxxl88r6aymWROliaETfsyODwU6dpFZyIUU='",
-        "'sha256-33dcmxHc726AphEOtauUa39NPzHtsEPzEAX8PKd8NU0='",
-        "'sha256-vqol01UCQbQtIbFsadt22MWtP/EzXBhlXJVTdE3Z0Nk='",
-        "'sha256-vnJfeIr7hNIEwFqAV/GfKdJDn1SeGTUHl87WXU7cOxA='",
-        "'strict-dynamic'",
-      ],
-      'object-src': ["'none'"],
-      'base-uri': ["'none'"],
-      'connect-src': [
-        'sheltered-scrubland-08732.herokuapp.com',
-        'https://*.here.com:*',
-        'https://*.hereapi.com:*',
-        'blob:',
-      ],
-      'worker-src': ["'self'", 'blob:'],
-      'manifest-src': ['https://sheltered-scrubland-08732.herokuapp.com'],
-      //  'require-trusted-types-for': [`'script'`], // cannot use. 'script' value requires further specifications which are a mystery to solve some other time.
-    },
-  })
-) */
+
+// hash scripts: https://report-uri.com/home/hash
+// https://csp-evaluator.withgoogle.com/
+// security scan: https://snyk.io/website-scanner/
 
 app.use((req, res, next) => {
   res.setHeader('Permissions-Policy', 'geolocation=(), interest-cohort=()')
