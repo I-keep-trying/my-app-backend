@@ -18,9 +18,11 @@ app.use(
         'flagcdn.com',
         'upload.wikimedia.org',
         'https://*.openstreetmap.org:*',
-        // 'https://*.openweathermap.org:*', // does not work, still blocking
         'https://openweathermap.org:*',
         'mainfacts.com',
+      ],
+      'script-src': [
+        "'strict-dynamic'",
       ],
     },
   })
