@@ -14,10 +14,12 @@ app.use(
     directives: {
       'img-src': [
         "'self'",
+        'data:',
         'flagcdn.com',
         'upload.wikimedia.org',
         'https://*.openstreetmap.org:*',
-        'https://*.openweathermap.org:*',
+        // 'https://*.openweathermap.org:*', // does not work, still blocking
+        'https://openweathermap.org:*',
         'mainfacts.com',
       ],
     },
