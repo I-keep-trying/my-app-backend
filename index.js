@@ -24,6 +24,8 @@ app.use(
       'script-src': [
         "'strict-dynamic'",
         "'sha256-uFGu8SoF5pY4GH6m6V6zWNd7z4ggaLrBaNjOz6jEJy8='",
+        "'sha256-TMMFIGY2uFxHNvu61L2PDY0LFVGkw4gihnLvw9JaSYc='",
+        "'sha256-zkTBAXC7PHxTh7OlfyIHNOSoL2eMBp72ZKVH2RLl87o='",
       ],
     },
   })
