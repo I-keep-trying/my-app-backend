@@ -23,6 +23,7 @@ app.use(
       ],
       'script-src': [
         "'strict-dynamic'",
+        "'sha256-uFGu8SoF5pY4GH6m6V6zWNd7z4ggaLrBaNjOz6jEJy8='",
       ],
     },
   })
