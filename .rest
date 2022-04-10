@@ -1,5 +1,12 @@
 GET http://localhost:3001/
 ###
+GET http://localhost:3001/api/ciadata
+###
+GET https://raw.githubusercontent.com/I-keep-trying/factbook-data/master/data/American%20Samoa.json
+###
+GET http://localhost:3001/api/ciadata/Algeria
+
+###
 GET http://localhost:3001/api/weather/lat/59.92/lng/10.75/unit/metric
 ###
 GET http://localhost:3001/api/countries/

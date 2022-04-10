@@ -12,37 +12,7 @@ const app = express()
 const CryptoJS = require('crypto-js')
 const fs = require('fs')
 
-const findFile = fs
-  .readdirSync('./build/static/js')
-  .filter((f) => f.match(/runtime-main\..*\.js$/))
-console.log('findFile', findFile)
-
-const findFile2 = fs
-  .readdirSync('./build/static/js')
-  .filter((f) => f.match(/main\..*\.chunk\.js$/))
-console.log('findFile', findFile2)
-
-const hash1 = fs.readFileSync(
-  // './build/static/js/runtime-main.5fec9555.js',
-  `./build/static/js/${findFile}`,
-  (err, data) => {
-    if (err) throw err
-    data
-    //  const hash = CryptoJS.SHA256(jsFile)
-    //  hash.toString(CryptoJS.enc.Base64)
-
-    //console.log('SHA', CryptoJS.SHA256(jsFile))
-  }
-)
-
-const hashString = hash1.toString('utf8')
-//console.log('hashString', hashString)
-
-const hash2 = 'sha256-'.concat(
-  CryptoJS.SHA256(hashString).toString(CryptoJS.enc.Base64)
-)
-console.log('hash2', hash2)
-app.use(
+/* app.use(
   helmet.contentSecurityPolicy({
     directives: {
       'img-src': [
@@ -62,7 +32,7 @@ app.use(
       ],
     },
   })
-)
+) */
 
 // hash scripts: https://report-uri.com/home/hash
 // https://csp-evaluator.withgoogle.com/
@@ -94,7 +64,8 @@ app.get('/api/countries', async (req, res) => {
 
     res.json(response.data)
   } catch (err) {
-    console.log('axios request failed', err)
+    console.log('axios request failed api/countries', err)
+    res.status(err.response.status).send(err.response.statusText)
   }
 })
 
@@ -105,7 +76,8 @@ app.get('/api/countries/name/:name', async (req, res) => {
     )
     res.json(response.data)
   } catch (err) {
-    console.log('axios request failed', err)
+    console.log('axios request failed api/countries/name', err)
+    res.status(err.response.status).send(err.response.statusText)
   }
 })
 
@@ -121,7 +93,8 @@ app.get('/api/weather/lat/:lat/lng/:lng/unit/:unit', async (req, res) => {
     )
     res.json(response.data)
   } catch (err) {
-    console.log('axios request failed', err)
+    console.log('axios request failed api/weather', err)
+    res.status(err.response.status).send(err.response.statusText)
   }
 })
 
@@ -136,7 +109,23 @@ app.get('/api/time/lat/:lat/lng/:lng', async (req, res) => {
     )
     res.json(response.data)
   } catch (err) {
-    console.log('axios request failed', err)
+    console.log('axios request failed api/time', err)
+    res.status(err.response.status).send(err.response.statusText)
+  }
+})
+
+// ---------------- CIA factbook data from repo ------------------
+
+app.get('/api/ciadata/:country', async (req, res) => {
+  const country = req.params.country
+  try {
+    const response = await axios.get(
+      `https://raw.githubusercontent.com/I-keep-trying/factbook-data/master/data/${country}.json`
+    )
+    res.json(response.data)
+  } catch (error) {
+    console.log('axios request failed api/ciadata', error)
+    res.status(error.response.status).send(error.response.statusText)
   }
 })
 
