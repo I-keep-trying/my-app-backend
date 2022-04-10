@@ -12,7 +12,7 @@ const app = express()
 const CryptoJS = require('crypto-js')
 const fs = require('fs')
 
-/* app.use(
+app.use(
   helmet.contentSecurityPolicy({
     directives: {
       'img-src': [
@@ -32,7 +32,7 @@ const fs = require('fs')
       ],
     },
   })
-) */
+)
 
 // hash scripts: https://report-uri.com/home/hash
 // https://csp-evaluator.withgoogle.com/
