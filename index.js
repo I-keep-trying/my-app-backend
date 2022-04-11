@@ -26,9 +26,9 @@ app.use(
       ],
       'script-src': [
         "'strict-dynamic'",
-        "'sha256-uFGu8SoF5pY4GH6m6V6zWNd7z4ggaLrBaNjOz6jEJy8='",
-        "'sha256-TMMFIGY2uFxHNvu61L2PDY0LFVGkw4gihnLvw9JaSYc='",
-        "'sha256-zkTBAXC7PHxTh7OlfyIHNOSoL2eMBp72ZKVH2RLl87o='",
+        "'sha256-23s/HXdkRx9AuyzOH/und7BwObAYZ22o2OqWptTVxfw='",
+        "'sha256-FI/PsA1VNNfA/kxQYe0gdeB5Un7Ft+CGi9W/805ueJ4='",
+        "'sha256-Oe5xGqbEaKOUFRaE9cc1nnPQwEZTO0rzqlBmcD2p0ls='",
       ],
     },
   })
