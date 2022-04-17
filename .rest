@@ -1,28 +1,3 @@
-GET http://localhost:3001/
+GET http://localhost:3001/api/ciadata/Albania
 ###
-GET http://localhost:3001/api/ciadata
-###
-GET https://raw.githubusercontent.com/I-keep-trying/factbook-data/master/data/American%20Samoa.json
-###
-GET http://localhost:3001/api/ciadata/Algeria
-
-###
-GET http://localhost:3001/api/weather/lat/59.92/lng/10.75/unit/metric
-###
-GET http://localhost:3001/api/countries/
-###
-GET http://localhost:3001/api/countries/name/colombia
-
-###
-GET http://localhost:3001/api/notes/620152c8a8b5eb1edc717310
-
-###
-POST http://localhost:3001/api/notes
-Content-Type: application/json
-
- {
-      "content": "shocked and oversurprised and panick",
-      "important": false
-    }
-
-
+GET http://localhost:3001

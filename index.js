@@ -8,9 +8,15 @@ const compression = require('compression')
 const helmet = require('helmet')
 const path = require('path')
 const app = express()
-
-const CryptoJS = require('crypto-js')
 const fs = require('fs')
+/* const nonce = require('nonce-express')
+
+app.use(
+  nonce({
+    varName: 'nonce',
+    size: 16,
+  })
+) */
 
 app.use(
   helmet.contentSecurityPolicy({
@@ -24,11 +30,12 @@ app.use(
         'https://openweathermap.org:*',
         'mainfacts.com',
       ],
+      //      scriptSrc: ["'self'", (req, res) => `'nonce-${res.locals['nonce']}'`],
       'script-src': [
         "'strict-dynamic'",
-        "'sha256-23s/HXdkRx9AuyzOH/und7BwObAYZ22o2OqWptTVxfw='",
-        "'sha256-FI/PsA1VNNfA/kxQYe0gdeB5Un7Ft+CGi9W/805ueJ4='",
-        "'sha256-Oe5xGqbEaKOUFRaE9cc1nnPQwEZTO0rzqlBmcD2p0ls='",
+        "'sha256-D9FWLDrJXRmd5N8shQyjR/Z0eJBYghLakWO1dQInUkU='",
+        "'sha256-d+IU0RoWvuXOoHgNQwiunEos79Ed6a4BlgwybuIsUnc='",
+        "'sha256-gCaa7D8D9maURPGIdT3DvjolyGiP1Gl+rRtgrQKIkVc='",
       ],
     },
   })
@@ -56,6 +63,12 @@ app.use(express.json())
 app.use(middleware.requestLogger)
 
 app.use(express.static('build'))
+
+/* app.get('/', (req, res) =>
+  res.send(
+    `<script nonce="${res.locals.nonce}">alert("Hello, there!")</script>`
+  )
+) */
 
 // --------------- Countries from 3rd party api -------------------
 app.get('/api/countries', async (req, res) => {
@@ -128,6 +141,32 @@ app.get('/api/ciadata/:country', async (req, res) => {
     res.status(error.response.status).send(error.response.statusText)
   }
 })
+
+app.get('/api/ciaimages/:country', async (req, res) => {
+  const country = req.params.country
+  try {
+    const response = await axios.get(
+      `https://www.cia.gov/the-world-factbook/countries/${country}/images`
+    )
+    fs.writeFile(
+      './response.json',
+      JSON.stringify(response.data, null, 2),
+      (err) => {
+        if (err) {
+          console.log('Failed to write ciaimages data')
+          return
+        }
+        console.log('Updated ciaimages data file successfully')
+      }
+    )
+    res.json(response.data)
+  } catch (err) {
+    console.log('axios request failed api/ciaimages/:country', err)
+    res.status(err.response.status).send(err.response.statusText)
+  }
+})
+
+// ------------------ global functions -----------------------
 
 const unknownEndpoint = (request, response) => {
   console.log('Unknown endpoint error')
