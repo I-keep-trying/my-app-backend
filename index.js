@@ -9,20 +9,6 @@ const helmet = require('helmet')
 const path = require('path')
 const app = express()
 const fs = require('fs')
-/* const nonce = require('nonce-express')
-
-app.use(
-  nonce({
-    varName: 'nonce',
-    size: 16,
-  })
-) */
-
-const CryptoJS = require('crypto-js')
-const crypto = require('crypto')
-
-fs.readFile('./build/static/js/runtime-main.3db5cb73.js')
-crypto.createHash('sha256').update()
 
 app.use(
   helmet.contentSecurityPolicy({
@@ -73,12 +59,6 @@ app.use(express.json())
 app.use(middleware.requestLogger)
 
 app.use(express.static('build'))
-
-/* app.get('/', (req, res) =>
-  res.send(
-    `<script nonce="${res.locals.nonce}">alert("Hello, there!")</script>`
-  )
-) */
 
 // --------------- Countries from 3rd party api -------------------
 app.get('/api/countries', async (req, res) => {
