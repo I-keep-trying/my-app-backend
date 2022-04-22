@@ -18,6 +18,12 @@ app.use(
   })
 ) */
 
+const CryptoJS = require('crypto-js')
+const crypto = require('crypto')
+
+fs.readFile('./build/static/js/runtime-main.3db5cb73.js')
+crypto.createHash('sha256').update()
+
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
@@ -33,10 +39,14 @@ app.use(
       //      scriptSrc: ["'self'", (req, res) => `'nonce-${res.locals['nonce']}'`],
       'script-src': [
         "'strict-dynamic'",
-        "'sha256-D9FWLDrJXRmd5N8shQyjR/Z0eJBYghLakWO1dQInUkU='",
-        "'sha256-d+IU0RoWvuXOoHgNQwiunEos79Ed6a4BlgwybuIsUnc='",
-        "'sha256-gCaa7D8D9maURPGIdT3DvjolyGiP1Gl+rRtgrQKIkVc='",
+        "'sha256-JgrN8PErcdgU85yNHtjdqpC3PmuCXE/2VVW845mj7k8='",
+        "'sha256-63fyEKPBB4iuEo82anaFMTxaYpVmWBl/6jFZqTuY2nw='",
+        "'sha256-An9ECXKrpghTbqBEgoIcde2ICelkmiQkMu8HmGu4MjI='",
       ],
+      /*       'style-src': [
+        "'sha256-0Ich/ZVKNTvM8KLjfZKUd/QTC3JI6GkBGjgrw1cNK9E='"
+      ]
+ */
     },
   })
 )
@@ -129,7 +139,19 @@ app.get('/api/time/lat/:lat/lng/:lng', async (req, res) => {
 
 // ---------------- CIA factbook data from repo ------------------
 
-app.get('/api/ciadata/:country', async (req, res) => {
+app.get('/api/ciadata', async (req, res) => {
+  try {
+    const response = await axios.get(
+      `https://raw.githubusercontent.com/I-keep-trying/factbook-data/master/data.json`
+    )
+    res.json(response.data)
+  } catch (error) {
+    console.log('axios request failed api/ciadata', error)
+    res.status(error.response.status).send(error.response.statusText)
+  }
+})
+
+app.get('/api/ciadata/country/:country', async (req, res) => {
   const country = req.params.country
   try {
     const response = await axios.get(
