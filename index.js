@@ -29,11 +29,11 @@ app.use(
       //      scriptSrc: ["'self'", (req, res) => `'nonce-${res.locals['nonce']}'`],
       'script-src': [
         "'strict-dynamic'",
-        "'sha256-JgrN8PErcdgU85yNHtjdqpC3PmuCXE/2VVW845mj7k8='",
-        "'sha256-63fyEKPBB4iuEo82anaFMTxaYpVmWBl/6jFZqTuY2nw='",
-        "'sha256-An9ECXKrpghTbqBEgoIcde2ICelkmiQkMu8HmGu4MjI='",
+        "'sha256-h9ngcfJzf7O8IYhejoqSYOou6CggnwQ2y3HaEvh4/3s='",
+        "'sha256-YF01qAW+lsRR0WX6eL3mO6z4zUBM9LfPCENQA3o0IC0='",
+        "'sha256-AHwCVnp1fMtK22Rw5Y78wIkkItZz2XKJR201qSiPL4c='",
       ],
-      'style-src': ["'self'"],
+      // 'style-src': ["'self'"],
       /*       'style-src': [
         "'sha256-0Ich/ZVKNTvM8KLjfZKUd/QTC3JI6GkBGjgrw1cNK9E='"
       ]
