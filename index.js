@@ -35,7 +35,7 @@ app.use(
       ],
       // 'style-src': ["'self'"],
       /*       'style-src': [
-        "'sha256-0Ich/ZVKNTvM8KLjfZKUd/QTC3JI6GkBGjgrw1cNK9E='"
+        "'sha256-6oeyQPdbyinSkNMl+BhaqL+3gk07f4oIu8esAJl7njc='"
       ]
  */
     },
