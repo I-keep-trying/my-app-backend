@@ -1,2 +1,0 @@
-table{display:flex;flex-flow:column;height:100%;width:100%}table thead{flex:0 0 auto;width:100%}table tbody{flex:1 1 auto;display:block;overflow:hidden}table tbody tr{width:100%}table tbody tr,table thead{display:table;table-layout:fixed}table td,table th{padding:.3em;border:1px solid #d3d3d3}.ui.table tr th{text-align:center}.ui.table:last-child{margin-bottom:1em}
-/*# sourceMappingURL=19.42d291cf.chunk.css.map */

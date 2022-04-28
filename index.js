@@ -9,6 +9,10 @@ const helmet = require('helmet')
 const path = require('path')
 const app = express()
 const fs = require('fs')
+const moment = require('moment')
+
+const date = new Date()
+const today = moment(date).format('YYYY-MM-DD')
 
 app.use(
   helmet.contentSecurityPolicy({
@@ -29,6 +33,7 @@ app.use(
         "'sha256-63fyEKPBB4iuEo82anaFMTxaYpVmWBl/6jFZqTuY2nw='",
         "'sha256-An9ECXKrpghTbqBEgoIcde2ICelkmiQkMu8HmGu4MjI='",
       ],
+      'style-src': ["'self'"],
       /*       'style-src': [
         "'sha256-0Ich/ZVKNTvM8KLjfZKUd/QTC3JI6GkBGjgrw1cNK9E='"
       ]
@@ -104,6 +109,7 @@ app.get('/api/weather/lat/:lat/lng/:lng/unit/:unit', async (req, res) => {
 // --------------- Country date/time from 3rd party api -------------------
 
 app.get('/api/time/lat/:lat/lng/:lng', async (req, res) => {
+  console.log('time api: ', req.params)
   const lat = req.params.lat
   const lng = req.params.lng
   try {
@@ -117,53 +123,21 @@ app.get('/api/time/lat/:lat/lng/:lng', async (req, res) => {
   }
 })
 
-// ---------------- CIA factbook data from repo ------------------
+// ---------------------- News ----------------------------
 
-app.get('/api/ciadata', async (req, res) => {
+app.get('/api/countries/news/:name', async (req, res) => {
+  console.log('news params: ', req.params.name)
+  const selectedCountry = req.params.name
   try {
+    // const response = await axios.get(`https://newsapi.org/v2/top-headlines?country=${selectedCountry}&apiKey=${process.env.REACT_APP_NEWSAPI_KEY}`)
+    //    console.log('response.data', response.data)
     const response = await axios.get(
-      `https://raw.githubusercontent.com/I-keep-trying/factbook-data/master/data.json`
+      `https://newsapi.org/v2/everything?q=${selectedCountry}&from=${today}&sortBy=popularity&apiKey=${process.env.REACT_APP_NEWSAPI_KEY}`
     )
-    res.json(response.data)
-  } catch (error) {
-    console.log('axios request failed api/ciadata', error)
-    res.status(error.response.status).send(error.response.statusText)
-  }
-})
-
-app.get('/api/ciadata/country/:country', async (req, res) => {
-  const country = req.params.country
-  try {
-    const response = await axios.get(
-      `https://raw.githubusercontent.com/I-keep-trying/factbook-data/master/data/${country}.json`
-    )
-    res.json(response.data)
-  } catch (error) {
-    console.log('axios request failed api/ciadata', error)
-    res.status(error.response.status).send(error.response.statusText)
-  }
-})
-
-app.get('/api/ciaimages/:country', async (req, res) => {
-  const country = req.params.country
-  try {
-    const response = await axios.get(
-      `https://www.cia.gov/the-world-factbook/countries/${country}/images`
-    )
-    fs.writeFile(
-      './response.json',
-      JSON.stringify(response.data, null, 2),
-      (err) => {
-        if (err) {
-          console.log('Failed to write ciaimages data')
-          return
-        }
-        console.log('Updated ciaimages data file successfully')
-      }
-    )
+    //    console.log('response.data', response.data)
     res.json(response.data)
   } catch (err) {
-    console.log('axios request failed api/ciaimages/:country', err)
+    console.log('axios request failed api/countries/news', err)
     res.status(err.response.status).send(err.response.statusText)
   }
 })
@@ -171,7 +145,7 @@ app.get('/api/ciaimages/:country', async (req, res) => {
 // ------------------ global functions -----------------------
 
 const unknownEndpoint = (request, response) => {
-  console.log('Unknown endpoint error')
+  console.log('Unknown endpoint error', request.params)
   response.status(404).send({ error: 'unknown endpoint' })
 }
 

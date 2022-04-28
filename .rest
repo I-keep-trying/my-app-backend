@@ -1,5 +1,7 @@
 GET http://localhost:3001/api/ciadata/country/Albania
 ###
-GET http://localhost:3001/api/ciadata
+GET http://localhost:3001/api/countries/name/albania
+###
+GET http://localhost:3001/api/countries/news/Eswatini
 ###
 GET http://localhost:3001
