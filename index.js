@@ -27,8 +27,6 @@ app.use(
         'https://openweathermap.org:*',
         'mainfacts.com',
       ], */
-      //      scriptSrc: ["'self'", (req, res) => `'nonce-${res.locals['nonce']}'`],
-      'img-src': ["'self'"],
       'script-src': [
         "'strict-dynamic'",
         "'sha256-h9ngcfJzf7O8IYhejoqSYOou6CggnwQ2y3HaEvh4/3s='",
@@ -43,10 +41,6 @@ app.use(
     },
   })
 )
-
-// hash scripts: https://report-uri.com/home/hash
-// https://csp-evaluator.withgoogle.com/
-// security scan: https://snyk.io/website-scanner/
 
 app.use((req, res, next) => {
   res.setHeader('Permissions-Policy', 'geolocation=(), interest-cohort=()')
@@ -136,7 +130,6 @@ app.get('/api/countries/news/:name', async (req, res) => {
     const response = await axios.get(
       `https://newsapi.org/v2/everything?q=${selectedCountry}&from=${today}&sortBy=popularity&apiKey=${process.env.REACT_APP_NEWSAPI_KEY}`
     )
-    //    console.log('response.data', response.data)
     res.json(response.data)
   } catch (err) {
     console.log('axios request failed api/countries/news', err)
