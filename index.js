@@ -109,6 +109,21 @@ app.get('/api/countries/news/:name', async (req, res) => {
   }
 })
 
+// --------------------- Maps --------------------------------
+app.get('/api/countries/map/:name', async (req, res) => {
+  console.log('map params: ', req.params.name)
+  const selectedCountry = req.params.name
+  try {
+    const response = await axios.get(
+      `https://nominatim.openstreetmap.org/search?q=${selectedCountry}&polygon_geojson=1&format=json`
+    )
+    res.json(response.data)
+  } catch (err) {
+    console.log('axios request failed api/countries/map', err)
+    res.status(err.response.status).send(err.response.statusText)
+  }
+})
+
 // ------------------ global functions -----------------------
 
 const unknownEndpoint = (request, response) => {

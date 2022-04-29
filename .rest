@@ -4,4 +4,6 @@ GET http://localhost:3001/api/countries/name/albania
 ###
 GET http://localhost:3001/api/countries/news/Eswatini
 ###
+GET http://localhost:3001/api/countries/map/albania
+###
 GET http://localhost:3001
