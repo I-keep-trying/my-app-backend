@@ -27,6 +27,10 @@ app.use(
         'https://openweathermap.org:*',
         'mainfacts.com',
       ], */
+      'img-src': [
+        '*',
+        'data:'
+      ]
       'script-src': [
         "'strict-dynamic'",
         "'sha256-h9ngcfJzf7O8IYhejoqSYOou6CggnwQ2y3HaEvh4/3s='",
