@@ -14,38 +14,6 @@ const moment = require('moment')
 const date = new Date()
 const today = moment(date).format('YYYY-MM-DD')
 
-app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      // how the hell do you allow images from news api? many different sources, impossible to know ahead of time
-      /*     'img-src': [
-        "'self'",
-        'data:',
-        'flagcdn.com',
-        'upload.wikimedia.org',
-        'https://*.openstreetmap.org:*',
-        'https://openweathermap.org:*',
-        'mainfacts.com',
-      ], */
-      'img-src': [
-        '*',
-        'data:'
-      ]
-      'script-src': [
-        "'strict-dynamic'",
-        "'sha256-h9ngcfJzf7O8IYhejoqSYOou6CggnwQ2y3HaEvh4/3s='",
-        "'sha256-YF01qAW+lsRR0WX6eL3mO6z4zUBM9LfPCENQA3o0IC0='",
-        "'sha256-AHwCVnp1fMtK22Rw5Y78wIkkItZz2XKJR201qSiPL4c='",
-      ],
-      // 'style-src': ["'self'"],
-      /*       'style-src': [
-        "'sha256-6oeyQPdbyinSkNMl+BhaqL+3gk07f4oIu8esAJl7njc='"
-      ]
- */
-    },
-  })
-)
-
 app.use((req, res, next) => {
   res.setHeader('Permissions-Policy', 'geolocation=(), interest-cohort=()')
   res.setHeader(
