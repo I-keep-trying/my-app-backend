@@ -17,7 +17,8 @@ const today = moment(date).format('YYYY-MM-DD')
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      'img-src': [
+      // how the hell do you allow images from news api? many different sources, impossible to know ahead of time
+      /*     'img-src': [
         "'self'",
         'data:',
         'flagcdn.com',
@@ -25,8 +26,9 @@ app.use(
         'https://*.openstreetmap.org:*',
         'https://openweathermap.org:*',
         'mainfacts.com',
-      ],
+      ], */
       //      scriptSrc: ["'self'", (req, res) => `'nonce-${res.locals['nonce']}'`],
+      'img-src': ["'self'"],
       'script-src': [
         "'strict-dynamic'",
         "'sha256-h9ngcfJzf7O8IYhejoqSYOou6CggnwQ2y3HaEvh4/3s='",
