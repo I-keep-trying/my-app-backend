@@ -29,7 +29,7 @@ app.use((req, res, next) => {
 
 app.use(compression())
 app.use(express.json())
-app.use(middleware.requestLogger)
+//app.use(middleware.requestLogger)
 
 app.use(express.static('build'))
 
@@ -77,7 +77,6 @@ app.get('/api/weather/lat/:lat/lng/:lng/unit/:unit', async (req, res) => {
 // --------------- Country date/time from 3rd party api -------------------
 
 app.get('/api/time/lat/:lat/lng/:lng', async (req, res) => {
-  console.log('time api: ', req.params)
   const lat = req.params.lat
   const lng = req.params.lng
   try {
@@ -94,7 +93,6 @@ app.get('/api/time/lat/:lat/lng/:lng', async (req, res) => {
 // ---------------------- News ----------------------------
 
 app.get('/api/countries/news/:name', async (req, res) => {
-  console.log('news params: ', req.params.name)
   const selectedCountry = req.params.name
   try {
     // const response = await axios.get(`https://newsapi.org/v2/top-headlines?country=${selectedCountry}&apiKey=${process.env.REACT_APP_NEWSAPI_KEY}`)
@@ -110,16 +108,55 @@ app.get('/api/countries/news/:name', async (req, res) => {
 })
 
 // --------------------- Maps --------------------------------
+//// --------------------- Maps.bbox --------------------------------
+
 app.get('/api/countries/map/:name', async (req, res) => {
-  console.log('map params: ', req.params.name)
   const selectedCountry = req.params.name
   try {
     const response = await axios.get(
       `https://nominatim.openstreetmap.org/search?q=${selectedCountry}&polygon_geojson=1&format=json`
     )
-    res.json(response.data)
+    const resData = response.data[0].boundingbox
+    const arrResData = [
+      Number(resData[0]),
+      Number(resData[1]),
+      Number(resData[2]),
+      Number(resData[3]),
+    ]
+    res.json(arrResData)
   } catch (err) {
     console.log('axios request failed api/countries/map', err)
+    res.status(err.response.status).send(err.response.statusText)
+  }
+})
+
+//// --------------------- Maps.features --------------------------------
+
+app.get('/api/countries/features/lat/:lat/lon/:lon', async (req, res) => {
+  const location = req.params
+  try {
+    const response = await axios.get(
+      `https://api.geoapify.com/v2/places?categories=accommodation.hotel&filter=circle:${location.lon},${location.lat},5000&limit=20&apiKey=${process.env.REACT_APP_GEOAPIFY_KEY}`
+    )
+    res.json(response.data)
+  } catch (err) {
+    console.log('axios request failed api/countries/features', err)
+    res.status(err.response.status).send(err.response.statusText)
+  }
+})
+
+//// --------------------- Maps.features.details --------------------------------
+
+app.get('/api/countries/feature/:id', async (req, res) => {
+  console.log('feature req', req.params.id)
+  const id = req.params.id
+  try {
+    const response = await axios.get(
+      `https://api.geoapify.com/v2/place-details?id=${id}&apiKey=${process.env.REACT_APP_GEOAPIFY_KEY}`
+    )
+    res.json(response.data)
+  } catch (err) {
+    console.log('axios request failed api/countries/feature', err)
     res.status(err.response.status).send(err.response.statusText)
   }
 })

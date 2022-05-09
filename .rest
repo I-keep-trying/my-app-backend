@@ -6,4 +6,8 @@ GET http://localhost:3001/api/countries/news/Eswatini
 ###
 GET http://localhost:3001/api/countries/map/albania
 ###
+GET http://localhost:3001/api/countries/features/lat/60.17/lon/24.93
+###
+GET http://localhost:3001/api/countries/feature/51c21d7bcbf7614340595099b4d21b8c4b40f00102f90184aad6070000000092030ed09ad0bed0bbd0bed0bcd0bdd0b0
+###
 GET http://localhost:3001
