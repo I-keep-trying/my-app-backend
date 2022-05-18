@@ -10,4 +10,26 @@ GET http://localhost:3001/api/countries/features/lat/60.17/lon/24.93
 ###
 GET http://localhost:3001/api/countries/feature/51c21d7bcbf7614340595099b4d21b8c4b40f00102f90184aad6070000000092030ed09ad0bed0bbd0bed0bcd0bdd0b0
 ###
+GET http://localhost:3001/api/countries/hotels/bbox/swlat/36.54494944148322/swlng/8.151855468750002/nelat/45.78284835197676/nelng/31.486816406250004
+###
+GET http://localhost:3001/api/countries/hotels/details/15134798
+###
 GET http://localhost:3001
+###
+GET https://travel-advisor.p.rapidapi.com/hotels/list-in-boundary?bl_latitude=12.85464890558895&bl_longitude=29.355468750000004&tr_longitude=79.40917968750001&tr_latitude=35.137879119634185&limit=30
+x-rapidapi-key: 870e0e80c7msh9f82bd536d01a85p1b5baejsna32f6ed63436
+###
+GET https://travel-advisor.p.rapidapi.com/hotels/get-details?location_id=15134798
+x-rapidapi-host: travel-advisor.p.rapidapi.com
+x-rapidapi-key: 870e0e80c7msh9f82bd536d01a85p1b5baejsna32f6ed63436
+
+###
+POST https://travel-advisor.p.rapidapi.com/locations/v2/search?currency=USD&units=km&lang=en_US
+content-type: application/json,
+X-RapidAPI-Host: travel-advisor.p.rapidapi.com,
+X-RapidAPI-Key: 16f53447d8mshc502b885a1a81b2p19c02cjsna1b6202530fd
+
+{
+    "query": "chiang mai",
+    "updateToken": ""
+}

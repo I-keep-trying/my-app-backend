@@ -107,7 +107,7 @@ app.get('/api/countries/news/:name', async (req, res) => {
   }
 })
 
-// --------------------- Maps --------------------------------
+// ------------------------- Maps -----------------------------------
 //// --------------------- Maps.bbox --------------------------------
 
 app.get('/api/countries/map/:name', async (req, res) => {
@@ -148,7 +148,6 @@ app.get('/api/countries/features/lat/:lat/lon/:lon', async (req, res) => {
 //// --------------------- Maps.features.details --------------------------------
 
 app.get('/api/countries/feature/:id', async (req, res) => {
-  console.log('feature req', req.params.id)
   const id = req.params.id
   try {
     const response = await axios.get(
@@ -159,6 +158,112 @@ app.get('/api/countries/feature/:id', async (req, res) => {
     console.log('axios request failed api/countries/feature', err)
     res.status(err.response.status).send(err.response.statusText)
   }
+})
+
+//// ------------------------ Maps.travel-advisor.hotels --------------------------
+
+app.get(
+  '/api/countries/hotels/bbox/swlat/:swlat/swlng/:swlng/nelat/:nelat/nelng/:nelng',
+  async (req, res) => {
+    const swlat = req.params.swlat
+    const swlng = req.params.swlng
+    const nelat = req.params.nelat
+    const nelng = req.params.nelng
+
+    const url = `https://travel-advisor.p.rapidapi.com/hotels/list-in-boundary?bl_latitude=${swlat}&bl_longitude=${swlng}&tr_longitude=${nelng}&tr_latitude=${nelat}&limit=5&currency=USD`
+
+    const config = {
+      headers: {
+        'x-rapidapi-host': 'travel-advisor.p.rapidapi.com',
+        'x-rapidapi-key': process.env.REACT_APP_RAPID_API_KEY,
+      },
+    }
+
+    try {
+      const response = await axios.get(url, config)
+      console.log('response when zero: ', response.data.data)
+      res.json(response.data.data)
+    } catch (err) {
+      console.log('axios request failed api/hotels', err.response)
+      res.status(err.response.status).send(err.response.statusText)
+    }
+  }
+)
+
+//// ------------------------ Maps.travel-advisor.hotels.details --------------------------
+
+/* app.get('/api/countries/hotels/details/:id', async (req, res) => {
+  console.log('req.params', req.params)
+  const url = `https://travel-advisor.p.rapidapi.com/hotels/get-details?location_id=${req.params.id}`
+  const config = {
+    headers: {
+      'x-rapidapi-host': 'travel-advisor.p.rapidapi.com',
+      'x-rapidapi-key': process.env.REACT_APP_RAPID_API_KEY,
+    },
+  }
+
+  try {
+    const response = await axios.get(url, config)
+    //   console.log('response.data.data', response.data)
+    res.json(response.data.data)
+  } catch (err) {
+    console.log('axios request failed api/hotels/details', err.response)
+    res.status(err.response.status).send(err.response.statusText)
+  }
+}) */
+app.get('/api/countries/hotels/details/:id', (req, res) => {
+  console.log('req.params', req.params)
+  const url = `https://travel-advisor.p.rapidapi.com/hotels/get-details?location_id=${req.params.id}`
+  const config = {
+    headers: {
+      'x-rapidapi-host': 'travel-advisor.p.rapidapi.com',
+      'x-rapidapi-key': process.env.REACT_APP_RAPID_API_KEY,
+    },
+  }
+
+  axios
+    .get(url, config)
+    .then((response) => {
+      console.log('.then(response)...')
+      res.json(response.data.data)
+    })
+    .catch((err) => {
+      console.log(
+        'axios request failed api/hotels/details',
+        err.response.status,
+        ', ',
+        err.response.statusText
+      )
+    })
+})
+
+// ------------------ test with fake data -----------------------
+
+app.get('/api/fakedata/:id', (req, res) => {
+  console.log('req.params', req.params.id)
+  const url = `https://jsonplaceholder.typicode.com/todos/${req.params.id}`
+  const config = {
+    headers: {
+      'my-fake-header': 'localhost:3000',
+    },
+  }
+
+  let count = 0
+  axios
+    .get(url, config)
+    .then((response) => {
+      const result = response.data
+      console.log('Retrived from API', result)
+      res.json(response.data)
+    })
+    .catch((err) =>
+      console.log(
+        'fakedata error: Status: ',
+        err.response.status,
+        'fakedata error text: ',
+        err.response.statusText
+      )
+    )
 })
 
 // ------------------ global functions -----------------------
@@ -183,7 +288,7 @@ const errorHandler = (error, request, response, next) => {
 
 app.use(errorHandler)
 
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT || 3002
 app.listen(PORT)
 console.log(`Server running on port ${PORT}`)
 
