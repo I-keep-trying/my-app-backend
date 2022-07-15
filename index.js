@@ -190,90 +190,15 @@ app.get(
   }
 )
 
-//// ------------------------ Maps.travel-advisor.hotels.details --------------------------
-
-/* app.get('/api/countries/hotels/details/:id', async (req, res) => {
-  console.log('req.params', req.params)
-  const url = `https://travel-advisor.p.rapidapi.com/hotels/get-details?location_id=${req.params.id}`
-  const config = {
-    headers: {
-      'x-rapidapi-host': 'travel-advisor.p.rapidapi.com',
-      'x-rapidapi-key': process.env.REACT_APP_RAPID_API_KEY,
-    },
-  }
-
-  try {
-    const response = await axios.get(url, config)
-    //   console.log('response.data.data', response.data)
-    res.json(response.data.data)
-  } catch (err) {
-    console.log('axios request failed api/hotels/details', err.response)
-    res.status(err.response.status).send(err.response.statusText)
-  }
-}) */
-app.get('/api/countries/hotels/details/:id', (req, res) => {
-  console.log('req.params', req.params)
-  const url = `https://travel-advisor.p.rapidapi.com/hotels/get-details?location_id=${req.params.id}`
-  const config = {
-    headers: {
-      'x-rapidapi-host': 'travel-advisor.p.rapidapi.com',
-      'x-rapidapi-key': process.env.REACT_APP_RAPID_API_KEY,
-    },
-  }
-
-  axios
-    .get(url, config)
-    .then((response) => {
-      console.log('.then(response)...')
-      res.json(response.data.data)
-    })
-    .catch((err) => {
-      console.log(
-        'axios request failed api/hotels/details',
-        err.response.status,
-        ', ',
-        err.response.statusText
-      )
-    })
-})
-
-// ------------------ test with fake data -----------------------
-
-app.get('/api/fakedata/:id', (req, res) => {
-  console.log('req.params', req.params.id)
-  const url = `https://jsonplaceholder.typicode.com/todos/${req.params.id}`
-  const config = {
-    headers: {
-      'my-fake-header': 'localhost:3000',
-    },
-  }
-
-  let count = 0
-  axios
-    .get(url, config)
-    .then((response) => {
-      const result = response.data
-      console.log('Retrived from API', result)
-      res.json(response.data)
-    })
-    .catch((err) =>
-      console.log(
-        'fakedata error: Status: ',
-        err.response.status,
-        'fakedata error text: ',
-        err.response.statusText
-      )
-    )
-})
-
 // ------------------ global functions -----------------------
 
 const unknownEndpoint = (request, response) => {
-  console.log('Unknown endpoint error', request.params)
+  console.log('Unknown endpoint error', request)
   response.status(404).send({ error: 'unknown endpoint' })
 }
 
 app.use(unknownEndpoint)
+// Currently seeing unknown endpoint error in node console; no idea why; app not displaying any errors.
 
 const errorHandler = (error, request, response, next) => {
   console.error('Generic error: ', error.message)
