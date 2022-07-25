@@ -5,7 +5,6 @@ const mongoose = require('mongoose')
 const middleware = require('./utils/middleware')
 const cors = require('cors')
 const compression = require('compression')
-const helmet = require('helmet')
 const path = require('path')
 const app = express()
 const fs = require('fs')
@@ -29,7 +28,7 @@ app.use((req, res, next) => {
 
 app.use(compression())
 app.use(express.json())
-//app.use(middleware.requestLogger)
+app.use(middleware.requestLogger)
 
 app.use(express.static('build'))
 
@@ -95,8 +94,6 @@ app.get('/api/time/lat/:lat/lng/:lng', async (req, res) => {
 app.get('/api/countries/news/:name', async (req, res) => {
   const selectedCountry = req.params.name
   try {
-    // const response = await axios.get(`https://newsapi.org/v2/top-headlines?country=${selectedCountry}&apiKey=${process.env.REACT_APP_NEWSAPI_KEY}`)
-    //    console.log('response.data', response.data)
     const response = await axios.get(
       `https://newsapi.org/v2/everything?q=${selectedCountry}&from=${today}&sortBy=popularity&apiKey=${process.env.REACT_APP_NEWSAPI_KEY}`
     )
@@ -107,7 +104,6 @@ app.get('/api/countries/news/:name', async (req, res) => {
   }
 })
 
-// ------------------------- Maps -----------------------------------
 //// --------------------- Maps.bbox --------------------------------
 
 app.get('/api/countries/map/:name', async (req, res) => {
@@ -130,66 +126,6 @@ app.get('/api/countries/map/:name', async (req, res) => {
   }
 })
 
-//// --------------------- Maps.features --------------------------------
-
-app.get('/api/countries/features/lat/:lat/lon/:lon', async (req, res) => {
-  const location = req.params
-  try {
-    const response = await axios.get(
-      `https://api.geoapify.com/v2/places?categories=accommodation.hotel&filter=circle:${location.lon},${location.lat},5000&limit=20&apiKey=${process.env.REACT_APP_GEOAPIFY_KEY}`
-    )
-    res.json(response.data)
-  } catch (err) {
-    console.log('axios request failed api/countries/features', err)
-    res.status(err.response.status).send(err.response.statusText)
-  }
-})
-
-//// --------------------- Maps.features.details --------------------------------
-
-app.get('/api/countries/feature/:id', async (req, res) => {
-  const id = req.params.id
-  try {
-    const response = await axios.get(
-      `https://api.geoapify.com/v2/place-details?id=${id}&apiKey=${process.env.REACT_APP_GEOAPIFY_KEY}`
-    )
-    res.json(response.data)
-  } catch (err) {
-    console.log('axios request failed api/countries/feature', err)
-    res.status(err.response.status).send(err.response.statusText)
-  }
-})
-
-//// ------------------------ Maps.travel-advisor.hotels --------------------------
-
-app.get(
-  '/api/countries/hotels/bbox/swlat/:swlat/swlng/:swlng/nelat/:nelat/nelng/:nelng',
-  async (req, res) => {
-    const swlat = req.params.swlat
-    const swlng = req.params.swlng
-    const nelat = req.params.nelat
-    const nelng = req.params.nelng
-
-    const url = `https://travel-advisor.p.rapidapi.com/hotels/list-in-boundary?bl_latitude=${swlat}&bl_longitude=${swlng}&tr_longitude=${nelng}&tr_latitude=${nelat}&limit=5&currency=USD`
-
-    const config = {
-      headers: {
-        'x-rapidapi-host': 'travel-advisor.p.rapidapi.com',
-        'x-rapidapi-key': process.env.REACT_APP_RAPID_API_KEY,
-      },
-    }
-
-    try {
-      const response = await axios.get(url, config)
-      console.log('response when zero: ', response.data.data)
-      res.json(response.data.data)
-    } catch (err) {
-      console.log('axios request failed api/hotels', err.response)
-      res.status(err.response.status).send(err.response.statusText)
-    }
-  }
-)
-
 // ------------------ global functions -----------------------
 
 const unknownEndpoint = (request, response) => {
@@ -198,7 +134,6 @@ const unknownEndpoint = (request, response) => {
 }
 
 app.use(unknownEndpoint)
-// Currently seeing unknown endpoint error in node console; no idea why; app not displaying any errors.
 
 const errorHandler = (error, request, response, next) => {
   console.error('Generic error: ', error.message)
