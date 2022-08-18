@@ -6,7 +6,7 @@ The following steps assume your app is already built and running locally.
 
 1. Create Heroku account if needed
 2. Install globally if needed with `npm i -g heroku`
-3. Create app with `heroku create` and copy the generated app name somewhere
+3. Login with `heroku login`, then create app with `heroku create` and copy the generated app name somewhere
 4. Create git repo (add a copy of the `\build` directory from front end), commit and push
 5. Connect your Heroku app with your git repo using the name from step 3:
    `heroku git:remote -a heroku-generated-app-name-012345`
